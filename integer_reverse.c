@@ -1,37 +1,42 @@
+/*
+**	ÕûÊı·´×ª
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "stdio.h"
+#include "stdlib.h"
 #include "math.h"
 
+/*---ÕûÊı·´×ªº¯Êı---*/
 int integerReverse(int x)
 {
-    int arr[20] = {0};
-    int i = 0;
-    int j = 0;
-    int ret = 0;
-    for(i = 0; i < 20; ++i)
-    {
-        arr[i++] = x % 10;
-        x /= 10;
-    }
-    while(arr[i]== 0)
-    {
-        --i;
-    }
-    int temp = 1;
-    for(j = i; j <= i; --j)
-    {
-        ret += arr[j] * temp;
-        temp *= 10;
-    }
-    return ret;
+	int ret = 0;
+	while (x != 0)
+	{
+		int pop = x % 10;
+		if (ret > INT_MAX / 10 || (ret == INT_MAX / 10 && pop > 7))
+		{
+			return 0;
+		}
+		if (ret < INT_MIN / 10 || (ret == INT_MIN / 10 && pop < -8))
+		{
+			return 0;
+		}
+		ret = ret * 10 + pop;
+		x /= 10;
+	}
+	return ret;
 }
 
 int main()
 {
-    int number = 0;
-    int result = 0;
-    printf("è¯·è¾“å…¥æ•´æ•°: \n");
-    scanf("%d", &number);
-    result = integerReverse(number);
-    printf("ç»“æœå¦‚ä¸‹: %d\n", result);
-    return 0;
+	int result = 0;
+	int number = 0;
+	printf("ÇëÊäÈëÕûÊı: \n");
+	scanf("%d", &number);
+	result = integerReverse(number);
+	printf("½á¹ûÈçÏÂ: %d\n", result);
+	system("pause");
+	return 0;
 }
